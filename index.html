@@ -1,0 +1,95 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="inital-scale=1.0,user-scalable=no,minimal-ui">
+    <title>极简模式JavaScript音乐播放器 </title>
+    <script src="dn_music_play.js"></script>
+<!--    <script src="jquery-3.1.1.js"></script>-->
+    <style type="text/css">html,body{background-color: antiquewhite;}
+        pre{color:#ee;}
+    </style>
+    </head>
+    <body>
+    <pre>
+    一、功能（它能做什么？）：
+    1.可控制音乐状态（播放、暂停）
+    2.灵活的音乐资源配置（单个、多个）
+    3.自动音乐列表（无选择列表，有列表）
+    4.可指定播放器所在容器（元素、页面）
+    5.可指定音乐播放器所在的容器位置（顶、左、右、下）
+    6.客家在音乐资源并自动播放（浏览器、微信）
+    7.可自定义皮肤(按钮、列表)
+    8.极简小巧（无图片资源加载、无css样式文件加载）
+    9.更友好的用户体验(手机、pc)
+    二、写说明文档(怎么使用它？)
+    1.单个音乐
+        DNmusicPlay({audioUrl:"music/ccav.mp3"});
+        DNmusicPlay({audioUrl:{title:"中国人",source:"music/ccav.mp3"}});
+    2.多个音乐
+        DNmusicPlay({
+            audioUrl:[
+                {title:"music",source:"music/ccav.mp3"},
+                {title:"我爱你",source:"music/mdzz.mp3"}
+            ]
+            });
+    3.指定节点
+        DNmusicPlay({
+            nodeID:"dntest",
+            audioUrl:"music/ccav.mp3"
+            });
+    4.指定位置：
+        DNmusicPlay({
+            boxStyle:"dntest",
+            audioUrl:"music/ccav.mp3"
+        });
+    5.修改皮肤
+        按钮图(宽高比：1：2)
+        DNmusiPlay({
+            bottonSrc:"icon.png",
+            audioUrl:"music/ccav.mp3"
+        });
+        
+        播放器皮肤
+        DNmusiPlay({
+            htmls:"<div>......</div>",
+            audioUrl:"music/ccav.mp3"
+        });
+    三、实现组件
+    1.创建闭包
+        1).(function(argment){})(jQuery);
+        2).(function(global){})(typeof window!=="undefined"?window:this);//做兼容性处理
+        接受参数：var defualts={...};
+    2.定义播放器插件代码：var PlugCode=function(options){}; //传参options存在，需要定义接收参数
+    3.定义的模板渲染到DOM中用户指定的节点上。
+    4.定义一个常量(下划线+大写字母)__INFO__={plug:"DNmusicPlay"}  //目的：告诉用户不要修改。
+    5.获取到整个播放器的对象obj，获取播放器内部信息
+    6.按钮绑定事件
+    7.对音乐资源进行操作（传值类型不同，需要判断并转化为同一类型参数）.音乐自动加载
+    8.背景图的加载
+    9.完成指定位置功能  nodeID:"dntest",  
+    10.实现多个音乐 list发生改变时 监听事件
+    11.修改按钮图标、皮肤
+    二、微信兼容播放
+    </pre>
+
+    <div id="dntest" style="background:#f1f1f1;width:100%;height:200px;position:relation;">也可以把播放控制器加到这里</div>
+
+    </body>
+    <script>
+    DNmusicPlay({
+        nodeID:"dntest",  //指定位置定制
+        boxStyle:"top:10px;left:20px;opacity:1;",
+        buttonSrc:"img/VMP.jpg",
+//        audioUrl://单首歌
+//            "music/xyq.mp3",
+//            
+        audioUrl:[//多首歌
+            {title:"贝加尔湖畔",source:"music/bjehp.mp3"},
+            {title:"走上红毯那一天",source:"music/zshtnyt.mp3"},
+            {title:"小夜曲",source:"music/xyq.mp3"}
+            ]
+    });
+//    DNmusicPlay({audioUrl:{title:"贝加尔湖畔",source:"music/bjehp.mp3"}});
+    </script>
+</html>
